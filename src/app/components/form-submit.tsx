@@ -1,5 +1,7 @@
 'use client'
 
+import { Button } from '~/app/components/ui/button'
+
 type FormSubmitProps = {
   /**
    * The value of the submit button.
@@ -29,12 +31,12 @@ export function FormSubmit({
   isDisabled,
 }: FormSubmitProps) {
   return (
-    <button
+    <Button
       type="submit"
       className="h-full min-w-[64px] animate-none"
       disabled={isDisabled}
     >
       {isSubmitting ? 'Submitting' : value}
-    </button>
+    </Button>
   )
 }

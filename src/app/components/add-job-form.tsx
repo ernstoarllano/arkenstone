@@ -4,13 +4,22 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
-import { JobCreateType, jobSchema } from '~/server/api/routers/jobs/schema'
+import {
+  type JobCreateType,
+  createJobSchema,
+} from '~/server/api/routers/jobs/schema'
 import { api } from '~/trpc/react'
 
-import { Form } from '~/app/ui/form'
-import { FormInput } from '~/app/ui/form-input'
-import { FormSubmit } from '~/app/ui/form-submit'
+import { Form } from '~/app/components/form'
+import { FormDatePicker } from '~/app/components/form-datepicker'
+import { FormInput } from '~/app/components/form-input'
+import { FormSubmit } from '~/app/components/form-submit'
 
+/**
+ * A react-hook-form to create a new job.
+ *
+ * @returns {JSX.Element} The add job form component.
+ */
 export function AddJobForm() {
   const { refresh } = useRouter()
 
@@ -19,7 +28,7 @@ export function AddJobForm() {
       company: '',
       appliedAt: new Date(),
     },
-    resolver: zodResolver(jobSchema),
+    resolver: zodResolver(createJobSchema),
   })
 
   const { mutate } = api.job.create.useMutation()
@@ -36,6 +45,7 @@ export function AddJobForm() {
   return (
     <Form form={form} onSubmit={handleSubmit}>
       <FormInput label="Company" name="company" />
+      <FormDatePicker label="Applied At" name="appliedAt" />
       <FormSubmit value="Add Job" />
     </Form>
   )

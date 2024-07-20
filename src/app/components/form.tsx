@@ -1,22 +1,22 @@
 'use client'
 
 import {
-  FieldValues,
+  type FieldValues,
   FormProvider,
-  SubmitHandler,
-  UseFormReturn,
+  type SubmitHandler,
+  type UseFormReturn,
 } from 'react-hook-form'
 
-type FormProps<T extends FieldValues> = {
+type FormProps<TData extends FieldValues> = {
   /**
    * The form control object returned by `useForm`
    */
-  form: UseFormReturn<T>
+  form: UseFormReturn<TData>
 
   /**
    * The function to call when the form is submitted
    */
-  onSubmit: SubmitHandler<T>
+  onSubmit: SubmitHandler<TData>
 
   /**
    * The form children
@@ -25,16 +25,16 @@ type FormProps<T extends FieldValues> = {
 }
 
 /**
- * A generic form component that wraps a form element and provides form context.
+ * A generic form component that uses react-hook-form to provide form context.
  *
  * @param {FormProps} props The form component props.
  * @returns {JSX.Element} The form component.
  */
-export function Form<T extends FieldValues>({
+export function Form<TData extends FieldValues>({
   form,
   onSubmit,
   children,
-}: FormProps<T>) {
+}: FormProps<TData>) {
   return (
     <FormProvider {...form}>
       <form

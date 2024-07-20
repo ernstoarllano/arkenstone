@@ -1,14 +1,14 @@
 import { ErrorMessage } from '@hookform/error-message'
 import {
   Controller,
-  FieldPath,
-  FieldValues,
+  type FieldPath,
+  type FieldValues,
   useFormContext,
 } from 'react-hook-form'
 
-import { Input } from '~/app/ui/input'
+import { Input } from '~/app/components/ui/input'
 
-type FormInputProps<T> = {
+type FormInputProps<TData> = {
   /**
    * The label for the field
    */
@@ -17,31 +17,25 @@ type FormInputProps<T> = {
   /**
    * The name of the field in the form
    */
-  name: FieldPath<T extends FieldValues ? T : FieldValues>
+  name: FieldPath<TData extends FieldValues ? TData : FieldValues>
 
   /**
    * Whether or not the input is disabled
    */
   isDisabled?: boolean
-
-  /**
-   * show required field indicator
-   */
-  indicateRequired?: boolean
 }
 
 /**
- * A generic form input component that uses react-hook-form.
+ * A generic form input component that uses react-hook-form to provide form context.
  *
- * @param {FormInputProps} props The component props.
+ * @param {FormInputProps} props The input component props.
  * @returns {JSX.Element} The input component.
  */
-export function FormInput<T>({
+export function FormInput<TData>({
   label,
   name,
   isDisabled,
-  indicateRequired,
-}: FormInputProps<T>) {
+}: FormInputProps<TData>) {
   const {
     control,
     formState: { errors },

@@ -10,17 +10,8 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    @@index([name])
-}
-
 model Job {
-    id          Int       @id @default(autoincrement())
+    id          String    @id @default(uuid()) @db.Uuid
     company     String
     appliedAt   DateTime
     rejectedAt  DateTime?

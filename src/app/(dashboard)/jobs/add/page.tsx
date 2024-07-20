@@ -1,14 +1,15 @@
-import { HydrateClient } from '~/trpc/server'
+import { AddJobForm } from '~/app/components/add-job-form'
 
-import { AddJobForm } from '~/app/ui/add-job-form'
-
+/**
+ * Job page that allows users to add a job.
+ *
+ * @returns {Promise<JSX.Element>} A promise that resolves to the add job page.
+ */
 export default async function AddJobPage() {
   return (
-    <HydrateClient>
-      <div>
-        <h1>Add Job Page</h1>
-        <AddJobForm />
-      </div>
-    </HydrateClient>
+    <div>
+      <h1>Add Job Page</h1>
+      <AddJobForm />
+    </div>
   )
 }
