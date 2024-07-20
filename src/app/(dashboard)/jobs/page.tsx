@@ -1,9 +1,6 @@
-import { type ColumnDef } from '@tanstack/react-table'
-
-import { DataTable } from '~/app/components/data-table'
+import { JobsTable } from '~/app/components/jobs-table'
 
 import { api } from '~/trpc/server'
-import { type JobType } from '~/types/models'
 
 /**
  * Job page that lists all jobs.
@@ -13,21 +10,10 @@ import { type JobType } from '~/types/models'
 export default async function JobPage() {
   const jobs = await api.job.list()
 
-  const columns: ColumnDef<JobType>[] = [
-    {
-      accessorKey: 'company',
-      header: 'Company',
-    },
-    {
-      accessorKey: 'appliedAt',
-      header: 'Applied At',
-    },
-  ]
-
   return (
     <div>
       <h1>Job Page</h1>
-      <DataTable columns={columns} data={jobs} />
+      <JobsTable jobs={jobs} />
     </div>
   )
 }
