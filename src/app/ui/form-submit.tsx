@@ -1,21 +1,21 @@
-'use client';
+'use client'
 
 type FormSubmitProps = {
   /**
    * The value of the submit button.
    */
-  value: string;
+  value: string
 
   /**
    * Whether the form is submitting.
    */
-  isSubmitting?: boolean;
+  isSubmitting?: boolean
 
   /**
    * Whether the form submit button is disabled.
    */
-  isDisabled?: boolean;
-};
+  isDisabled?: boolean
+}
 
 /**
  * A generic form submit button component.
@@ -36,5 +36,5 @@ export function FormSubmit({
     >
       {isSubmitting ? 'Submitting' : value}
     </button>
-  );
+  )
 }
