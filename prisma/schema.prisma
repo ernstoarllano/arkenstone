@@ -18,3 +18,16 @@ model Post {
 
     @@index([name])
 }
+
+model Job {
+    id          Int       @id @default(autoincrement())
+    company     String
+    appliedAt   DateTime
+    rejectedAt  DateTime?
+    interviewAt DateTime?
+    acceptedAt  DateTime?
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+
+    @@index([company])
+}
